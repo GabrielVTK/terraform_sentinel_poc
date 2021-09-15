@@ -7,6 +7,6 @@ resource "aws_instance" "webserver" {
   instance_type = "t2.micro"
   tags = {
     "Name" = "SENTINEL_POC",
-    "Departamento" = "Arq. Tecnologia"
+    # "Departamento" = "Arq. Tecnologia"
   }
 }

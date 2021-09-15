@@ -54,6 +54,9 @@ resource_changes = {
 				"instance_type":        "t2.large",
 				"launch_template":      [],
 				"source_dest_check":    true,
+				"tags": {
+					"Name": "SENTINEL_POC",
+				},
 				"timeouts":    null,
 				"volume_tags": null,
 			},

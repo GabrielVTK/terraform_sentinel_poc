@@ -1,0 +1,42 @@
+import "tfplan/v2" as tfplan
+
+# Get all AWS instances from all modules
+ec2_instances = filter tfplan.resource_changes as _, rc {
+    rc.type is "aws_instance" and
+        (rc.change.actions contains "create" or rc.change.actions is ["update"])
+}
+
+# Tags Obrigatórias
+tags_obrigatorias = [
+    "Name",
+    "Departamento",
+]
+
+# Tipos permitidos
+tipos_permitidos = [
+    "t2.micro",
+    "t2.small",
+    "t2.medium",
+]
+
+# Regra para verificar as tags em todas as instâncias
+verifica_tags_obrigatorias = rule {
+    all ec2_instances as _, instance {
+        all tags_obrigatorias as mt {
+            instance.change.after.tags contains mt
+        }
+    }
+}
+
+# Regra para verificar o tipo de todas as instância
+verifica_tipo_instancia = rule {
+    all ec2_instances as _, instance {
+        instance.change.after.instance_type in tipos_permitidos
+    }
+}
+
+# Regra principal que verifica se as outras regras foram atendidas 
+main = rule {
+    (verifica_tipo_instancia and verifica_tags_obrigatorias) else true
+}
+

@@ -9,7 +9,7 @@ ec2_instances = filter tfplan.resource_changes as _, rc {
 # Tags Obrigatórias
 tags_obrigatorias = [
     "Name",
-    "Departamento",
+    "Department",
 ]
 
 # Regra para verificar as tags em todas as instâncias

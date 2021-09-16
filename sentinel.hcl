@@ -5,5 +5,5 @@ policy "poc-instance-policy" {
 
 policy "poc-tags-policy" {
   source            = "./poc-tags-policy.sentinel"
-  enforcement_level = "advisory"
+  enforcement_level = "soft-mandatory"
 }

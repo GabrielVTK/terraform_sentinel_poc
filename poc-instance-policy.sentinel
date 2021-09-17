@@ -22,6 +22,6 @@ verifica_tipo_instancia = rule {
 
 # Regra principal que verifica se as outras regras foram atendidas 
 main = rule {
-    (verifica_tipo_instancia) else true
+    verifica_tipo_instancia
 }
 

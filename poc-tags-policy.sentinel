@@ -23,6 +23,6 @@ verifica_tags_obrigatorias = rule {
 
 # Regra principal que verifica se as regras foram atendidas 
 main = rule {
-    (verifica_tags_obrigatorias) else true
+    verifica_tags_obrigatorias
 }
 
